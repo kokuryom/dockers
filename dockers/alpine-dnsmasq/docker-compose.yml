@@ -1,0 +1,13 @@
+version: '3'
+services:
+  dns:
+    container_name: mydns
+    image: alpine-dnsmasq
+    build: .
+    ports:
+      - "53:53"
+    volumes:
+      - ./conf/hosts:/etc/hosts:ro
+      - ./conf/resolv.conf:/etc/resolv.conf:ro
+    cap_add:
+      - NET_ADMIN

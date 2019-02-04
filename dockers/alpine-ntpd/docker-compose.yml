@@ -1,0 +1,14 @@
+version: '3'
+services:
+  ntpd:
+    container_name: myntpd
+    image: alpine-ntpd
+    build: .
+    ports:
+      - "123:123/udp"
+    volumes:
+      - "./conf/ntpd.conf:/etc/ntpd.conf"
+    cap_add:
+      - SYS_NICE
+      - SYS_RESOURCE
+      - SYS_TIME

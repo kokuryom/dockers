@@ -1,0 +1,8 @@
+dhcpd:
+  image: alpine-dhcpd
+  volumes:
+    - ./conf/dhcpd.conf:/etc/dhcp/dhcpd.conf
+    - ./conf/dhcpd.leases:/var/lib/dhcp/dhcpd.leases
+  ports:
+    - "67:67"
+  net: host

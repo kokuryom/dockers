@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  mailcatcher:
+    container_name: mailcatcher
+    image: schickling/mailcatcher
+    ports:
+      - "1025:1025"
+      - "1080:1080"
