@@ -3,7 +3,7 @@
 ready-to-use docker-compose examples
 
 ## Documentation
-* **[https://kokuryom.github.io/dockers](https://kokuryom.github.io/dockers)** github pages
+* **[GitHub Pages](https://kokuryom.github.io/dockers/index.html)** by mdbook
 
 ## list
 * **[alpine-freeradius](https://github.com/kokuryom/dockers/tree/master/dockers/alpine-freeradius)** freeradius3
