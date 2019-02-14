@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>NTP server with docker - dockers</title>
+        <title>NTP server by Docker - dockers</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,7 +72,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="about.html"><strong aria-hidden="true">1.</strong> Contents</a></li><li><a href="alpine-freeradius.html"><strong aria-hidden="true">2.</strong> RADIUS with docker</a></li><li><a href="radius_centos7.html"><strong aria-hidden="true">3.</strong> RADIUS with centos7</a></li><li><a href="alpine-ntpd.html" class="active"><strong aria-hidden="true">4.</strong> NTP server with docker</a></li><li><a href="advanced-network.html"><strong aria-hidden="true">5.</strong> Advanced Network</a></li></ol>
+            <ol class="chapter"><li><a href="about.html"><strong aria-hidden="true">1.</strong> Contents</a></li><li><a href="alpine-freeradius.html"><strong aria-hidden="true">2.</strong> RADIUS by Docker</a></li><li><a href="radius_centos7.html"><strong aria-hidden="true">3.</strong> RADIUS by CentOS 7</a></li><li><a href="alpine-ntpd.html" class="active"><strong aria-hidden="true">4.</strong> NTP server by Docker</a></li><li><a href="alpine-dnsmasq.html"><strong aria-hidden="true">5.</strong> DNS server by Docker</a></li><li><a href="advanced-network.html"><strong aria-hidden="true">6.</strong> Advanced Network</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -172,7 +172,7 @@ myntpd  | reply from 210.173.160.57: offset 0.000364 delay 0.003804, next query 
 myntpd  | clock is now synced
 myntpd  | reply from 133.243.238.243: offset -0.000834 delay 0.003595, next query 32s
 </code></pre>
-<p>別ターミナルでntpctl.shを使用すると動作チェックができます。* が付いているレコードが同期していることを示します。</p>
+<p>別ターミナルでcheck.shを使用すると動作チェックができます。* が付いているレコードが同期していることを示します。</p>
 <pre><code>$ sh check.sh
 peer
    wt tl st  next  poll          offset       delay      jitter
@@ -193,7 +193,7 @@ peer
                         
 
                         
-                            <a rel="next" href="advanced-network.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="alpine-dnsmasq.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -211,7 +211,7 @@ peer
                 
 
                 
-                    <a href="advanced-network.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="alpine-dnsmasq.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 

@@ -1,7 +1,7 @@
 # Docker Nertwork
 
 If docker network is non cluster settings, there are two methods to connect real network.
-1. host: attach to host nic with using host's ip
+1. bridge: attach to internal bridge by using host's ip and ip forwarding.
 2. macvlan: create macvlan network by docker network command, then attach to it with new ip address.
 
 If you use docker-compose.yml without the description of networks, host mode is used. (Though it may depend on docker-compose version).

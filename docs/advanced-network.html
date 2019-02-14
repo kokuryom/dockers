@@ -72,7 +72,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="about.html"><strong aria-hidden="true">1.</strong> Contents</a></li><li><a href="alpine-freeradius.html"><strong aria-hidden="true">2.</strong> RADIUS with docker</a></li><li><a href="radius_centos7.html"><strong aria-hidden="true">3.</strong> RADIUS with centos7</a></li><li><a href="alpine-ntpd.html"><strong aria-hidden="true">4.</strong> NTP server with docker</a></li><li><a href="advanced-network.html" class="active"><strong aria-hidden="true">5.</strong> Advanced Network</a></li></ol>
+            <ol class="chapter"><li><a href="about.html"><strong aria-hidden="true">1.</strong> Contents</a></li><li><a href="alpine-freeradius.html"><strong aria-hidden="true">2.</strong> RADIUS by Docker</a></li><li><a href="radius_centos7.html"><strong aria-hidden="true">3.</strong> RADIUS by CentOS 7</a></li><li><a href="alpine-ntpd.html"><strong aria-hidden="true">4.</strong> NTP server by Docker</a></li><li><a href="alpine-dnsmasq.html"><strong aria-hidden="true">5.</strong> DNS server by Docker</a></li><li><a href="advanced-network.html" class="active"><strong aria-hidden="true">6.</strong> Advanced Network</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -139,7 +139,7 @@
                         <a class="header" href="#docker-nertwork" id="docker-nertwork"><h1>Docker Nertwork</h1></a>
 <p>If docker network is non cluster settings, there are two methods to connect real network.</p>
 <ol>
-<li>host: attach to host nic with using host's ip</li>
+<li>bridge: attach to internal bridge by using host's ip and ip forwarding.</li>
 <li>macvlan: create macvlan network by docker network command, then attach to it with new ip address.</li>
 </ol>
 <p>If you use docker-compose.yml without the description of networks, host mode is used. (Though it may depend on docker-compose version).</p>
@@ -197,7 +197,7 @@ docker network rm v0100
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="alpine-ntpd.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="alpine-dnsmasq.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
@@ -211,7 +211,7 @@ docker network rm v0100
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="alpine-ntpd.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="alpine-dnsmasq.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 

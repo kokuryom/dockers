@@ -42,7 +42,7 @@ myntpd  | clock is now synced
 myntpd  | reply from 133.243.238.243: offset -0.000834 delay 0.003595, next query 32s
 ```
 
-別ターミナルでntpctl.shを使用すると動作チェックができます。\* が付いているレコードが同期していることを示します。
+別ターミナルでcheck.shを使用すると動作チェックができます。\* が付いているレコードが同期していることを示します。
 ```
 $ sh check.sh
 peer

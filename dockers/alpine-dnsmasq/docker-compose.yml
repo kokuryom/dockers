@@ -11,3 +11,10 @@ services:
       - ./conf/resolv.conf:/etc/resolv.conf:ro
     cap_add:
       - NET_ADMIN
+    networks:
+      eth0:
+        ipv4_address: 192.168.10.118
+networks:
+  eth0:
+    external:
+      name: eth0

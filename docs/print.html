@@ -72,7 +72,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="about.html"><strong aria-hidden="true">1.</strong> Contents</a></li><li><a href="alpine-freeradius.html"><strong aria-hidden="true">2.</strong> RADIUS with docker</a></li><li><a href="radius_centos7.html"><strong aria-hidden="true">3.</strong> RADIUS with centos7</a></li><li><a href="alpine-ntpd.html"><strong aria-hidden="true">4.</strong> NTP server with docker</a></li><li><a href="advanced-network.html"><strong aria-hidden="true">5.</strong> Advanced Network</a></li></ol>
+            <ol class="chapter"><li><a href="about.html"><strong aria-hidden="true">1.</strong> Contents</a></li><li><a href="alpine-freeradius.html"><strong aria-hidden="true">2.</strong> RADIUS by Docker</a></li><li><a href="radius_centos7.html"><strong aria-hidden="true">3.</strong> RADIUS by CentOS 7</a></li><li><a href="alpine-ntpd.html"><strong aria-hidden="true">4.</strong> NTP server by Docker</a></li><li><a href="alpine-dnsmasq.html"><strong aria-hidden="true">5.</strong> DNS server by Docker</a></li><li><a href="advanced-network.html"><strong aria-hidden="true">6.</strong> Advanced Network</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -136,9 +136,17 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#about-this-repository" id="about-this-repository"><h1>About this repository</h1></a>
+                        <a class="header" href="#contents" id="contents"><h1>Contents</h1></a>
+<ul>
+<li><a href="alpine-freeradius.html">RADIUS by Docker</a></li>
+<li><a href="radius_centos7.html">RADIUS by CentOS 7</a></li>
+<li><a href="alpine-ntpd.html">NTP server by Docker</a></li>
+<li><a href="alpine-dnsmasq.html">DNS by Docker</a></li>
+<li><a href="advanced-network.html">Advanced Network</a></li>
+</ul>
+<a class="header" href="#about-this-repository" id="about-this-repository"><h2>About this repository</h2></a>
 <p>ネットワーク検証環境で便利に使えるDockerfileを使用方法と共に集めました</p>
-<a class="header" href="#getting-started" id="getting-started"><h1>Getting started</h1></a>
+<a class="header" href="#getting-started" id="getting-started"><h2>Getting started</h2></a>
 <ol>
 <li>dockerとdocker-composeをインストールしてください。CentOSの使用を推奨します。</li>
 </ol>
@@ -147,7 +155,7 @@
 <li><a href="%E4%BD%BF%E7%94%A8%E3%81%A7%E3%81%8D://docs.docker.com/compose/install/">Install docker-compose</a></li>
 </ul>
 <ol start="2">
-<li>このリポジトリを使用します。</li>
+<li>このリポジトリを使用します。git cloneまたはダウンロードしてください。</li>
 </ol>
 <ul>
 <li><a href="https://github.com/kokuryom/dockers">https://github.com/kokuryom/dockers</a></li>
@@ -334,7 +342,7 @@ myntpd  | reply from 210.173.160.57: offset 0.000364 delay 0.003804, next query 
 myntpd  | clock is now synced
 myntpd  | reply from 133.243.238.243: offset -0.000834 delay 0.003595, next query 32s
 </code></pre>
-<p>別ターミナルでntpctl.shを使用すると動作チェックができます。* が付いているレコードが同期していることを示します。</p>
+<p>別ターミナルでcheck.shを使用すると動作チェックができます。* が付いているレコードが同期していることを示します。</p>
 <pre><code>$ sh check.sh
 peer
    wt tl st  next  poll          offset       delay      jitter
@@ -343,10 +351,72 @@ peer
 210.173.160.57 ntp.jst.mfeed.ad.jp
  *  1 10  2   30s   33s         0.074ms     3.283ms     0.393ms
 </code></pre>
+<a class="header" href="#dns-server-by-docker" id="dns-server-by-docker"><h1>DNS server by Docker</h1></a>
+<a class="header" href="#dockersalpine-dnsmasq" id="dockersalpine-dnsmasq"><h2>dockers/alpine-dnsmasq</h2></a>
+<ul>
+<li>Dockerfile</li>
+<li>docker-compose.yml</li>
+<li>conf
+<ul>
+<li>hosts</li>
+<li>resolv.conf</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="#configuration-2" id="configuration-2"><h2>Configuration</h2></a>
+<div style="float:left;">
+<table><thead><tr><th> file </th><th> role </th></tr></thead><tbody>
+<tr><td> conf/hosts </td><td> 解決するホストを設定します </td></tr>
+<tr><td> conf/resolv.conf </td><td> 上位DNSを設定します </td></tr>
+</tbody></table>
+</div><div style="clear: both;"></div>
+<a class="header" href="#confhosts" id="confhosts"><h3>conf/hosts</h3></a>
+<pre><code>127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+172.16.100.11 client11
+172.16.100.12 client12
+</code></pre>
+<a class="header" href="#confresolvconf" id="confresolvconf"><h3>conf/resolv.conf</h3></a>
+<pre><code>search local
+8.8.8.8
+8.8.4.4
+</code></pre>
+<a class="header" href="#additional-network-settings" id="additional-network-settings"><h3>Additional Network Settings</h3></a>
+<p>dnsmasqはhostsファイルを使用するため、cap_add: NET_ADMINを付与して起動する必要があり、この影響のためかBridge Networkで起動するとip forwardingが機能しません。(つまり、ホストと同じアドレスでは起動できません）</p>
+<p>代わりに、macvlanで起動する設定を追加します。詳しくは<a href="advanced-network.html">Advanced Network</a>を参考にしてください。</p>
+<p>docker-compose.yml</p>
+<pre><code>version: '3'
+services:
+  dns:
+    container_name: mydns
+    image: alpine-dnsmasq
+    build: .
+    ports:
+      - &quot;53:53&quot;
+    volumes:
+      - ./conf/hosts:/etc/hosts:ro
+      - ./conf/resolv.conf:/etc/resolv.conf:ro
+    cap_add:
+      - NET_ADMIN
+    networks:
+      eth0:
+        ipv4_address: 172.16.100.53
+networks:
+  eth0:
+    external:
+      name: maceth0
+</code></pre>
+<p>macvlan設定を投入します</p>
+<pre><code>docker network create -d macvlan --subnet=172.16.100.0/24 --gateway=172.16.71.254 -o parent=eth0 maceth0
+</code></pre>
+<a class="header" href="#a起動-2" id="a起動-2"><h2>起動</h2></a>
+<pre><code>$ docker-compose up -d
+</code></pre>
 <a class="header" href="#docker-nertwork" id="docker-nertwork"><h1>Docker Nertwork</h1></a>
 <p>If docker network is non cluster settings, there are two methods to connect real network.</p>
 <ol>
-<li>host: attach to host nic with using host's ip</li>
+<li>bridge: attach to internal bridge by using host's ip and ip forwarding.</li>
 <li>macvlan: create macvlan network by docker network command, then attach to it with new ip address.</li>
 </ol>
 <p>If you use docker-compose.yml without the description of networks, host mode is used. (Though it may depend on docker-compose version).</p>
