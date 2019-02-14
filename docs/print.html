@@ -72,7 +72,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="about.html"><strong aria-hidden="true">1.</strong> Contents</a></li><li><a href="alpine-freeradius.html"><strong aria-hidden="true">2.</strong> RADIUS by Docker</a></li><li><a href="radius_centos7.html"><strong aria-hidden="true">3.</strong> RADIUS by CentOS 7</a></li><li><a href="alpine-ntpd.html"><strong aria-hidden="true">4.</strong> NTP server by Docker</a></li><li><a href="alpine-dnsmasq.html"><strong aria-hidden="true">5.</strong> DNS server by Docker</a></li><li><a href="advanced-network.html"><strong aria-hidden="true">6.</strong> Advanced Network</a></li></ol>
+            <ol class="chapter"><li><a href="about.html"><strong aria-hidden="true">1.</strong> Contents</a></li><li><a href="alpine-freeradius.html"><strong aria-hidden="true">2.</strong> RADIUS by Docker</a></li><li><a href="radius_centos7.html"><strong aria-hidden="true">3.</strong> RADIUS by CentOS 7</a></li><li><a href="alpine-ntpd.html"><strong aria-hidden="true">4.</strong> NTP server by Docker</a></li><li><a href="alpine-dhcpd.html"><strong aria-hidden="true">5.</strong> DHCP server by Docker</a></li><li><a href="alpine-dnsmasq.html"><strong aria-hidden="true">6.</strong> DNS server by Docker</a></li><li><a href="advanced-network.html"><strong aria-hidden="true">7.</strong> Advanced Network</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -351,6 +351,42 @@ peer
 210.173.160.57 ntp.jst.mfeed.ad.jp
  *  1 10  2   30s   33s         0.074ms     3.283ms     0.393ms
 </code></pre>
+<a class="header" href="#dhcp-server-by-docker" id="dhcp-server-by-docker"><h1>DHCP Server by Docker</h1></a>
+<a class="header" href="#dockersalpine-dhcpd" id="dockersalpine-dhcpd"><h2>dockers/alpine-dhcpd</h2></a>
+<ul>
+<li>Dockerfile</li>
+<li>docker-compose.yml</li>
+<li>conf
+<ul>
+<li>dhcpd.conf</li>
+</ul>
+</li>
+</ul>
+<a class="header" href="#configuration-2" id="configuration-2"><h2>Configuration</h2></a>
+<div style="float:left;">
+<table><thead><tr><th> file </th><th> role </th></tr></thead><tbody>
+<tr><td> conf/dhcpd.conf </td><td> DHCPを設定します </td></tr>
+</tbody></table>
+</div><div style="clear: both;"></div>
+<a class="header" href="#confdhcpdconf" id="confdhcpdconf"><h3>conf/dhcpd.conf</h3></a>
+<pre><code>authoritative;
+
+default-lease-time 7200;
+max-lease-time 7200;
+
+subnet 172.16.100.0 netmask 255.255.255.0 {
+  option routers 172.16.100.254;
+  option subnet-mask 255.255.255.0;
+  range 172.16.100.200 172.16.100.240;
+  option broadcast-address 172.16.100.255;
+  option domain-name-servers 8.8.8.8, 8.8.4.4;
+  option domain-name &quot;example.local&quot;;
+  option domain-search &quot;example.local&quot;;
+}
+</code></pre>
+<a class="header" href="#a起動-2" id="a起動-2"><h2>起動</h2></a>
+<pre><code>$ docker-compose up -d
+</code></pre>
 <a class="header" href="#dns-server-by-docker" id="dns-server-by-docker"><h1>DNS server by Docker</h1></a>
 <a class="header" href="#dockersalpine-dnsmasq" id="dockersalpine-dnsmasq"><h2>dockers/alpine-dnsmasq</h2></a>
 <ul>
@@ -363,7 +399,7 @@ peer
 </ul>
 </li>
 </ul>
-<a class="header" href="#configuration-2" id="configuration-2"><h2>Configuration</h2></a>
+<a class="header" href="#configuration-3" id="configuration-3"><h2>Configuration</h2></a>
 <div style="float:left;">
 <table><thead><tr><th> file </th><th> role </th></tr></thead><tbody>
 <tr><td> conf/hosts </td><td> 解決するホストを設定します </td></tr>
@@ -410,7 +446,7 @@ networks:
 <p>macvlan設定を投入します</p>
 <pre><code>docker network create -d macvlan --subnet=172.16.100.0/24 --gateway=172.16.71.254 -o parent=eth0 maceth0
 </code></pre>
-<a class="header" href="#a起動-2" id="a起動-2"><h2>起動</h2></a>
+<a class="header" href="#a起動-3" id="a起動-3"><h2>起動</h2></a>
 <pre><code>$ docker-compose up -d
 </code></pre>
 <a class="header" href="#docker-nertwork" id="docker-nertwork"><h1>Docker Nertwork</h1></a>

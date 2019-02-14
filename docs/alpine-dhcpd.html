@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Contents - dockers</title>
+        <title>DHCP server by Docker - dockers</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,7 +72,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="about.html" class="active"><strong aria-hidden="true">1.</strong> Contents</a></li><li><a href="alpine-freeradius.html"><strong aria-hidden="true">2.</strong> RADIUS by Docker</a></li><li><a href="radius_centos7.html"><strong aria-hidden="true">3.</strong> RADIUS by CentOS 7</a></li><li><a href="alpine-ntpd.html"><strong aria-hidden="true">4.</strong> NTP server by Docker</a></li><li><a href="alpine-dhcpd.html"><strong aria-hidden="true">5.</strong> DHCP server by Docker</a></li><li><a href="alpine-dnsmasq.html"><strong aria-hidden="true">6.</strong> DNS server by Docker</a></li><li><a href="advanced-network.html"><strong aria-hidden="true">7.</strong> Advanced Network</a></li></ol>
+            <ol class="chapter"><li><a href="about.html"><strong aria-hidden="true">1.</strong> Contents</a></li><li><a href="alpine-freeradius.html"><strong aria-hidden="true">2.</strong> RADIUS by Docker</a></li><li><a href="radius_centos7.html"><strong aria-hidden="true">3.</strong> RADIUS by CentOS 7</a></li><li><a href="alpine-ntpd.html"><strong aria-hidden="true">4.</strong> NTP server by Docker</a></li><li><a href="alpine-dhcpd.html" class="active"><strong aria-hidden="true">5.</strong> DHCP server by Docker</a></li><li><a href="alpine-dnsmasq.html"><strong aria-hidden="true">6.</strong> DNS server by Docker</a></li><li><a href="advanced-network.html"><strong aria-hidden="true">7.</strong> Advanced Network</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -136,39 +136,55 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#contents" id="contents"><h1>Contents</h1></a>
+                        <a class="header" href="#dhcp-server-by-docker" id="dhcp-server-by-docker"><h1>DHCP Server by Docker</h1></a>
+<a class="header" href="#dockersalpine-dhcpd" id="dockersalpine-dhcpd"><h2>dockers/alpine-dhcpd</h2></a>
 <ul>
-<li><a href="alpine-freeradius.html">RADIUS by Docker</a></li>
-<li><a href="radius_centos7.html">RADIUS by CentOS 7</a></li>
-<li><a href="alpine-ntpd.html">NTP server by Docker</a></li>
-<li><a href="alpine-dnsmasq.html">DNS by Docker</a></li>
-<li><a href="advanced-network.html">Advanced Network</a></li>
-</ul>
-<a class="header" href="#about-this-repository" id="about-this-repository"><h2>About this repository</h2></a>
-<p>ネットワーク検証環境で便利に使えるDockerfileを使用方法と共に集めました</p>
-<a class="header" href="#getting-started" id="getting-started"><h2>Getting started</h2></a>
-<ol>
-<li>dockerとdocker-composeをインストールしてください。CentOSの使用を推奨します。</li>
-</ol>
+<li>Dockerfile</li>
+<li>docker-compose.yml</li>
+<li>conf
 <ul>
-<li><a href="https://docs.docker.com/install/linux/docker-ce/centos/">Install docker</a></li>
-<li><a href="%E4%BD%BF%E7%94%A8%E3%81%A7%E3%81%8D://docs.docker.com/compose/install/">Install docker-compose</a></li>
+<li>dhcpd.conf</li>
 </ul>
-<ol start="2">
-<li>このリポジトリを使用します。git cloneまたはダウンロードしてください。</li>
-</ol>
-<ul>
-<li><a href="https://github.com/kokuryom/dockers">https://github.com/kokuryom/dockers</a></li>
+</li>
 </ul>
+<a class="header" href="#configuration" id="configuration"><h2>Configuration</h2></a>
+<div style="float:left;">
+<table><thead><tr><th> file </th><th> role </th></tr></thead><tbody>
+<tr><td> conf/dhcpd.conf </td><td> DHCPを設定します </td></tr>
+</tbody></table>
+</div><div style="clear: both;"></div>
+<a class="header" href="#confdhcpdconf" id="confdhcpdconf"><h3>conf/dhcpd.conf</h3></a>
+<pre><code>authoritative;
+
+default-lease-time 7200;
+max-lease-time 7200;
+
+subnet 172.16.100.0 netmask 255.255.255.0 {
+  option routers 172.16.100.254;
+  option subnet-mask 255.255.255.0;
+  range 172.16.100.200 172.16.100.240;
+  option broadcast-address 172.16.100.255;
+  option domain-name-servers 8.8.8.8, 8.8.4.4;
+  option domain-name &quot;example.local&quot;;
+  option domain-search &quot;example.local&quot;;
+}
+</code></pre>
+<a class="header" href="#a起動" id="a起動"><h2>起動</h2></a>
+<pre><code>$ docker-compose up -d
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
+                            <a rel="prev" href="alpine-ntpd.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
 
                         
-                            <a rel="next" href="alpine-freeradius.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="alpine-dnsmasq.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -180,9 +196,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
+                    <a href="alpine-ntpd.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
 
                 
-                    <a href="alpine-freeradius.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="alpine-dnsmasq.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
