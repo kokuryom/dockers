@@ -1,0 +1,9 @@
+[book]
+authors = ["Masayoshi Kokuryo"]
+multilingual = false
+src = "book-src"
+title = "dockers"
+
+[build]
+build-dir = "docs"
+create-missing = false
