@@ -21,7 +21,7 @@
 
 #### conf/clients.conf
 
-```
+```bash
 # localhost
 client localhost {
   ipaddr = 127.0.0.1
@@ -39,7 +39,7 @@ client client1 {
 ```
 
 #### conf/users
-```
+```bash
 # username: v2000, password: v2000pass
 # will be assigned vlan-id 2000 on Access-Accept
 v2000   Cleartext-Password := "v2000pass"
@@ -51,13 +51,13 @@ v2000   Cleartext-Password := "v2000pass"
 ## 起動
 
 起動後、ロガーを追記モードで起動します。
-```
+```bash
 $ docker-compose up -d
 $ docker-compose logs -f
 ```
 
 別ターミナルでcheck.shを使用すると動作チェックができます。
-```
+```bash
 $ sh check.sh
 Sent Access-Request Id 181 from 0.0.0.0:47802 to 127.0.0.1:1812 length 75
         User-Name = "v2000"
@@ -72,19 +72,10 @@ Received Access-Accept Id 181 from 127.0.0.1:1812 to 0.0.0.0:0 length 38
         Tunnel-Private-Group-Id:0 = "2000"
 ```
 
-## Firewalld
-必要に応じてFirewallの設定を行ってください。
-```bash
-su -
-firewall-cmd --add-service=radius
-firewall-cmd --add-service=radius --permanent
-firewall-cmd --list-all
-```
-
 ## 参考情報
 
 alpineで構成するRADIUSはわずか数十MBのイメージサイズ
-```
+```bash
 $ docker images
 REPOSITORY         TAG     IMAGE ID      CREATED         SIZE
 alpine-freeradius  latest  383c3d24fe5b  37 minutes ago  11MB

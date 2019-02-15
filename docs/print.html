@@ -72,7 +72,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="about.html"><strong aria-hidden="true">1.</strong> Contents</a></li><li><a href="alpine-freeradius.html"><strong aria-hidden="true">2.</strong> RADIUS by Docker</a></li><li><a href="radius_centos7.html"><strong aria-hidden="true">3.</strong> RADIUS by CentOS 7</a></li><li><a href="alpine-ntpd.html"><strong aria-hidden="true">4.</strong> NTP server by Docker</a></li><li><a href="alpine-dhcpd.html"><strong aria-hidden="true">5.</strong> DHCP server by Docker</a></li><li><a href="alpine-dnsmasq.html"><strong aria-hidden="true">6.</strong> DNS server by Docker</a></li><li><a href="advanced-network.html"><strong aria-hidden="true">7.</strong> Advanced Network</a></li></ol>
+            <ol class="chapter"><li><a href="getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><a href="alpine-freeradius.html"><strong aria-hidden="true">2.</strong> RADIUS by Docker</a></li><li><a href="radius_centos7.html"><strong aria-hidden="true">3.</strong> RADIUS by CentOS 7</a></li><li><a href="alpine-ntpd.html"><strong aria-hidden="true">4.</strong> NTP server by Docker</a></li><li><a href="alpine-dhcpd.html"><strong aria-hidden="true">5.</strong> DHCP server by Docker</a></li><li><a href="alpine-dnsmasq.html"><strong aria-hidden="true">6.</strong> DNS server by Docker</a></li><li><a href="advanced-network.html"><strong aria-hidden="true">7.</strong> Advanced Network</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -136,17 +136,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#contents" id="contents"><h1>Contents</h1></a>
-<ul>
-<li><a href="alpine-freeradius.html">RADIUS by Docker</a></li>
-<li><a href="radius_centos7.html">RADIUS by CentOS 7</a></li>
-<li><a href="alpine-ntpd.html">NTP server by Docker</a></li>
-<li><a href="alpine-dnsmasq.html">DNS by Docker</a></li>
-<li><a href="advanced-network.html">Advanced Network</a></li>
-</ul>
-<a class="header" href="#about-this-repository" id="about-this-repository"><h2>About this repository</h2></a>
-<p>ネットワーク検証環境で便利に使えるDockerfileを使用方法と共に集めました</p>
-<a class="header" href="#getting-started" id="getting-started"><h2>Getting started</h2></a>
+                        <a class="header" href="#getting-started" id="getting-started"><h2>Getting started</h2></a>
 <ol>
 <li>dockerとdocker-composeをインストールしてください。CentOSの使用を推奨します。</li>
 </ol>
@@ -160,6 +150,11 @@
 <ul>
 <li><a href="https://github.com/kokuryom/dockers">https://github.com/kokuryom/dockers</a></li>
 </ul>
+<ol start="3">
+<li>各サービスの使用方法は本ドキュメントの各章をご覧ください</li>
+</ol>
+<a class="header" href="#about-this-repository" id="about-this-repository"><h2>About this repository</h2></a>
+<p>ネットワーク検証環境で便利に使えるDockerfileを使用方法と共に集めました</p>
 <a class="header" href="#freeradius-by-docker" id="freeradius-by-docker"><h1>FreeRADIUS by Docker</h1></a>
 <a class="header" href="#dockersalpine-freeradius" id="dockersalpine-freeradius"><h2>dockers/alpine-freeradius</h2></a>
 <ul>
@@ -181,7 +176,7 @@
 </tbody></table>
 </div><div style="clear: both;"></div>
 <a class="header" href="#confclientsconf" id="confclientsconf"><h4>conf/clients.conf</h4></a>
-<pre><code># localhost
+<pre><code class="language-bash"># localhost
 client localhost {
   ipaddr = 127.0.0.1
   secret = testing123
@@ -197,7 +192,7 @@ client client1 {
 }
 </code></pre>
 <a class="header" href="#confusers" id="confusers"><h4>conf/users</h4></a>
-<pre><code># username: v2000, password: v2000pass
+<pre><code class="language-bash"># username: v2000, password: v2000pass
 # will be assigned vlan-id 2000 on Access-Accept
 v2000   Cleartext-Password := &quot;v2000pass&quot;
         Tunnel-Type = VLAN,
@@ -206,11 +201,11 @@ v2000   Cleartext-Password := &quot;v2000pass&quot;
 </code></pre>
 <a class="header" href="#a起動" id="a起動"><h2>起動</h2></a>
 <p>起動後、ロガーを追記モードで起動します。</p>
-<pre><code>$ docker-compose up -d
+<pre><code class="language-bash">$ docker-compose up -d
 $ docker-compose logs -f
 </code></pre>
 <p>別ターミナルでcheck.shを使用すると動作チェックができます。</p>
-<pre><code>$ sh check.sh
+<pre><code class="language-bash">$ sh check.sh
 Sent Access-Request Id 181 from 0.0.0.0:47802 to 127.0.0.1:1812 length 75
         User-Name = &quot;v2000&quot;
         User-Password = &quot;v2000pass&quot;
@@ -223,16 +218,9 @@ Received Access-Accept Id 181 from 127.0.0.1:1812 to 0.0.0.0:0 length 38
         Tunnel-Medium-Type:0 = IEEE-802
         Tunnel-Private-Group-Id:0 = &quot;2000&quot;
 </code></pre>
-<a class="header" href="#firewalld" id="firewalld"><h2>Firewalld</h2></a>
-<p>必要に応じてFirewallの設定を行ってください。</p>
-<pre><code class="language-bash">su -
-firewall-cmd --add-service=radius
-firewall-cmd --add-service=radius --permanent
-firewall-cmd --list-all
-</code></pre>
 <a class="header" href="#a参考情報" id="a参考情報"><h2>参考情報</h2></a>
 <p>alpineで構成するRADIUSはわずか数十MBのイメージサイズ</p>
-<pre><code>$ docker images
+<pre><code class="language-bash">$ docker images
 REPOSITORY         TAG     IMAGE ID      CREATED         SIZE
 alpine-freeradius  latest  383c3d24fe5b  37 minutes ago  11MB
 </code></pre>
@@ -243,7 +231,7 @@ alpine-freeradius  latest  383c3d24fe5b  37 minutes ago  11MB
 <li>数ユーザーしか登録しない</li>
 <li>数RADIUSクライアントしか登録しない</li>
 </ul>
-<a class="header" href="#firewalld-1" id="firewalld-1"><h2>Firewalld</h2></a>
+<a class="header" href="#firewalld" id="firewalld"><h2>Firewalld</h2></a>
 <pre><code class="language-bash">$ su -
 $ firewall-cmd --add-service=radius
 $ firewall-cmd --add-service=radius --permanent
