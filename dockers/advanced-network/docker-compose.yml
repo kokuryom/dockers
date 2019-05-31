@@ -1,8 +1,8 @@
 version: '3'
 services:
   advanced_network:
-    image: busybox
-    command: '/bin/sh'
+    image: busybox:latest
+    command: "tail -F something"
     networks:
       v1000:
         ipv4_address: 172.16.100.100
