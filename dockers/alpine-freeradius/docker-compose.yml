@@ -1,9 +1,9 @@
-version: '2'
+version: '3'
 services:
   freeradius:
-    container_name: myradius
     image: alpine-freeradius
     build: .
+    restart: always
     ports:
       - "1812:1812/udp"
       - "1813:1813/udp"

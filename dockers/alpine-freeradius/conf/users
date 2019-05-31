@@ -1,3 +1,8 @@
+525400FEA2E6 Cleartext-Password := "525400FEA2E6"
+	Tunnel-Type = VLAN,
+	Tunnel-Medium-Type = IEEE-802,
+	Tunnel-Private-Group-Id = 3054
+
 v2000	Cleartext-Password := "v2000"
 	Tunnel-Type = VLAN,
 	Tunnel-Medium-Type = IEEE-802,
