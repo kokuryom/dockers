@@ -7,3 +7,6 @@ title = "dockers"
 [build]
 build-dir = "docs"
 create-missing = false
+
+[output.html]
+additional-css = ["book-src/custom.css"]

@@ -1,0 +1,8 @@
+table {
+  margin: 0;
+}
+p.caution {
+  color: red;
+  padding-left: 4em;
+  test-indent: -3em;
+}

@@ -1,7 +1,6 @@
 # FreeRADIUS 3 おさらい
-FreeRADIUS 3をCentOS7にインストールする参考情報です。
-
-FreeRADIUSは以下の条件であれば簡単に用意出来ます。
+FreeRADIUS 3をCentOS7にインストールする参考情報です。  
+FreeRADIUSを以下の条件でセットアップします。  
 * 数ユーザーしか登録しない
 * 数RADIUSクライアントしか登録しない
 

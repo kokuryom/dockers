@@ -4,6 +4,10 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>dockers</title>
+        
+        <meta name="robots" content="noindex" />
+        
+
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -27,12 +31,17 @@
 
         <!-- Custom theme stylesheets -->
         
+        <link rel="stylesheet" href="book-src/custom.css">
+        
 
         
     </head>
     <body class="light">
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">var path_to_root = "";</script>
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = "light";
+        </script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script type="text/javascript">
@@ -53,8 +62,8 @@
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script type="text/javascript">
             var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
-            if (theme === null || theme === undefined) { theme = 'light'; }
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
             document.body.className = theme;
             document.querySelector('html').className = theme + ' js';
         </script>
@@ -72,7 +81,10 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <ol class="chapter"><li><a href="getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><a href="alpine-freeradius.html"><strong aria-hidden="true">2.</strong> RADIUS by Docker</a></li><li><a href="radius_centos7.html"><strong aria-hidden="true">3.</strong> RADIUS by CentOS 7</a></li><li><a href="alpine-ntpd.html"><strong aria-hidden="true">4.</strong> NTP server by Docker</a></li><li><a href="alpine-dhcpd.html"><strong aria-hidden="true">5.</strong> DHCP server by Docker</a></li><li><a href="alpine-dnsmasq.html"><strong aria-hidden="true">6.</strong> DNS server by Docker</a></li><li><a href="advanced-network.html"><strong aria-hidden="true">7.</strong> Advanced Network</a></li></ol>
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li><a href="getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li><a href="docker_command.html"><strong aria-hidden="true">1.1.</strong> dockerコマンド</a></li><li><a href="docker_compose_command.html"><strong aria-hidden="true">1.2.</strong> docker-composeコマンド</a></li></ol></li><li><a href="alpine-freeradius.html"><strong aria-hidden="true">2.</strong> radiusd by docker</a></li><li><ol class="section"><li><a href="radius_centos7.html"><strong aria-hidden="true">2.1.</strong> FreeRADIUS3 おさらい</a></li></ol></li><li><a href="alpine-ntpd.html"><strong aria-hidden="true">3.</strong> ntpd by docker</a></li><li><a href="alpine-dhcpd.html"><strong aria-hidden="true">4.</strong> dhcpd by docker</a></li><li><a href="alpine-dnsmasq.html"><strong aria-hidden="true">5.</strong> dnsmasq by docker</a></li><li><a href="advanced-network.html"><strong aria-hidden="true">6.</strong> Advanced Network</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -89,7 +101,7 @@
                                 <i class="fa fa-paint-brush"></i>
                             </button>
                             <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -102,12 +114,13 @@
                             
                         </div>
 
-                        <h1 class="menu-title">dockers</h1> 
+                        <h1 class="menu-title">dockers</h1>
 
                         <div class="right-buttons">
                             <a href="print.html" title="Print this book" aria-label="Print this book">
                                 <i id="print-button" class="fa fa-print"></i>
                             </a>
+                            
                         </div>
                     </div>
                 </div>
@@ -138,23 +151,61 @@
                     <main>
                         <a class="header" href="#getting-started" id="getting-started"><h2>Getting started</h2></a>
 <ol>
-<li>dockerとdocker-composeをインストールしてください。CentOSの使用を推奨します。</li>
+<li>dockerとdocker-composeをインストールしてください。</li>
 </ol>
 <ul>
 <li><a href="https://docs.docker.com/install/linux/docker-ce/centos/">Install docker</a></li>
-<li><a href="%E4%BD%BF%E7%94%A8%E3%81%A7%E3%81%8D://docs.docker.com/compose/install/">Install docker-compose</a></li>
+<li><a href="https://docs.docker.com/compose/install/">Install docker-compose</a></li>
 </ul>
 <ol start="2">
-<li>このリポジトリを使用します。git cloneまたはダウンロードしてください。</li>
+<li><a href="https://github.com/kokuryom/dockers">この</a>リポジトリを使用します。git cloneまたはダウンロードしてください。</li>
 </ol>
-<ul>
-<li><a href="https://github.com/kokuryom/dockers">https://github.com/kokuryom/dockers</a></li>
-</ul>
+<pre><code>$ git clone https://github.com/kokuryom/dockers
+$ cd dockers/dockers
+</code></pre>
 <ol start="3">
 <li>各サービスの使用方法は本ドキュメントの各章をご覧ください</li>
 </ol>
+<ul>
+<li>alpine-freeradius<br />
+<a href="/alpine-freeradius.html">radiusd by docker</a></li>
+<li>alpine-ntpd<br />
+<a href="/alpine-ntpd.html">ntpd by docker</a></li>
+<li>alpine-dhcpd<br />
+<a href="/alpine-dhcpd.html">dhcpd by docker</a></li>
+<li>alpine-dnsmasq<br />
+<a href="/alpine-dnsmasq.html">dnsmasq by docker</a></li>
+</ul>
 <a class="header" href="#about-this-repository" id="about-this-repository"><h2>About this repository</h2></a>
 <p>ネットワーク検証環境で便利に使えるDockerfileを使用方法と共に集めました</p>
+<a class="header" href="#docker-コマンド" id="docker-コマンド"><h1>docker コマンド</h1></a>
+<a class="header" href="#起動" id="起動"><h2>起動</h2></a>
+<table><thead><tr><th> コマンド </th><th> 説明 </th><th> 参考URL </th></tr></thead><tbody>
+<tr><td> docker run -it IMAGE /bin/bash</td><td>IMAGEで/bin/bashを使用する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/run/">docker run</a> </td></tr>
+<tr><td> docker exec -it CONTAINER /bin/bash </td><td>CONTAINERで/bin/bashを使用する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/exec/">docker exec</a> </td></tr>
+</tbody></table>
+<a class="header" href="#起動確認停止削除" id="起動確認停止削除"><h2>起動確認／停止／削除</h2></a>
+<table><thead><tr><th> コマンド </th><th> 説明 </th><th> 参考URL </th></tr></thead><tbody>
+<tr><td> docker ps    </td><td>現在動作しているContainerを表示する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/ps/">docker ps</a> </td></tr>
+<tr><td> docker stop  </td><td>現在動作しているContainerを停止する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/stop/">docker stop</a> </td></tr>
+<tr><td> docker ps -a </td><td>停止したContainerを表示する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/ps/">docker ps</a> </td></tr>
+<tr><td> docker rm CONTAINER </td><td>停止したCONTAINERを削除する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/rm/">docker rm</a> </td></tr>
+<tr><td> docker images </td><td>ローカルにあるIMAGEを表示する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/images/">docker images</a> </td></tr>
+<tr><td> docker rmi IMAGE </td><td>使用していないIMAGEを削除する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/rmi/">docker rmi</a> </td></tr>
+</tbody></table>
+<a class="header" href="#docker-compose-コマンド" id="docker-compose-コマンド"><h1>docker-compose コマンド</h1></a>
+<a class="header" href="#起動停止" id="起動停止"><h2>起動/停止</h2></a>
+<table><thead><tr><th> コマンド </th><th> 説明 </th><th> 参考URL </th></tr></thead><tbody>
+<tr><td> docker-compose up -d</td><td>docker-compose.ymlのあるフォルダで起動する</td><td> <a href="https://docs.docker.com/compose/reference/up/">docker-compose up</a> </td></tr>
+<tr><td> docker-compose down</td><td>docker-compose.ymlのあるフォルダで停止する</td><td> <a href="https://docs.docker.com/compose/reference/down/">docker-compose down</a> </td></tr>
+<tr><td> docker-compose up</td><td>docker-compose.ymlのあるフォルダで起動し、Containerのstdoutを表示する</td><td> <a href="https://docs.docker.com/compose/reference/up/">docker-compose up</a> </td></tr>
+<tr><td> Ctrl-C </td><td> docker-compose upで起動したContainerを停止する</td><td> </td></tr>
+</tbody></table>
+<a class="header" href="#ログ確認" id="ログ確認"><h2>ログ確認</h2></a>
+<table><thead><tr><th> コマンド </th><th> 説明 </th><th> 参考URL </th></tr></thead><tbody>
+<tr><td> docker-compose logs</td><td>docker-compose.ymlのあるフォルダでdetachされたstdoutに接続する</td><td> <a href="https://docs.docker.com/compose/reference/up/">docker-compose logs</a> </td></tr>
+<tr><td> Ctrl-C </td><td> docker-compose logsを停止する</td><td> </td></tr>
+</tbody></table>
 <a class="header" href="#freeradius-by-docker" id="freeradius-by-docker"><h1>FreeRADIUS by Docker</h1></a>
 <a class="header" href="#dockersalpine-freeradius" id="dockersalpine-freeradius"><h2>dockers/alpine-freeradius</h2></a>
 <ul>
@@ -199,7 +250,7 @@ v2000   Cleartext-Password := &quot;v2000pass&quot;
         Tunnel-Medium-Type = IEEE-802,
         Tunnel-Private-Group-Id = 2000
 </code></pre>
-<a class="header" href="#a起動" id="a起動"><h2>起動</h2></a>
+<a class="header" href="#起動-1" id="起動-1"><h2>起動</h2></a>
 <p>起動後、ロガーを追記モードで起動します。</p>
 <pre><code class="language-bash">$ docker-compose up -d
 $ docker-compose logs -f
@@ -218,15 +269,15 @@ Received Access-Accept Id 181 from 127.0.0.1:1812 to 0.0.0.0:0 length 38
         Tunnel-Medium-Type:0 = IEEE-802
         Tunnel-Private-Group-Id:0 = &quot;2000&quot;
 </code></pre>
-<a class="header" href="#a参考情報" id="a参考情報"><h2>参考情報</h2></a>
+<a class="header" href="#参考情報" id="参考情報"><h2>参考情報</h2></a>
 <p>alpineで構成するRADIUSはわずか数十MBのイメージサイズ</p>
 <pre><code class="language-bash">$ docker images
 REPOSITORY         TAG     IMAGE ID      CREATED         SIZE
 alpine-freeradius  latest  383c3d24fe5b  37 minutes ago  11MB
 </code></pre>
 <a class="header" href="#freeradius-3-おさらい" id="freeradius-3-おさらい"><h1>FreeRADIUS 3 おさらい</h1></a>
-<p>FreeRADIUS 3をCentOS7にインストールする参考情報です。</p>
-<p>FreeRADIUSは以下の条件であれば簡単に用意出来ます。</p>
+<p>FreeRADIUS 3をCentOS7にインストールする参考情報です。<br />
+FreeRADIUSを以下の条件でセットアップします。</p>
 <ul>
 <li>数ユーザーしか登録しない</li>
 <li>数RADIUSクライアントしか登録しない</li>
@@ -261,7 +312,7 @@ client client1 {
   secret = client1
 }
 </code></pre>
-<a class="header" href="#aユーザーを登録" id="aユーザーを登録"><h2>ユーザーを登録</h2></a>
+<a class="header" href="#ユーザーを登録" id="ユーザーを登録"><h2>ユーザーを登録</h2></a>
 <p>/etc/raddb/users</p>
 <pre><code class="language-bash"># username: v2000, password: v2000pass
 # will be assigned vlan-id 2000 on Access-Accept
@@ -270,12 +321,12 @@ v2000   Cleartext-Password := &quot;v2000pass&quot;
         Tunnel-Medium-Type = IEEE-802,
         Tunnel-Private-Group-Id = 2000
 </code></pre>
-<a class="header" href="#aログが出る状態で起動" id="aログが出る状態で起動"><h2>ログが出る状態で起動</h2></a>
+<a class="header" href="#ログが出る状態で起動" id="ログが出る状態で起動"><h2>ログが出る状態で起動</h2></a>
 <pre><code class="language-bash">$ systemctl disable radiusd
 $ systemctl stop radiusd
 $ radiusd -X
 </code></pre>
-<a class="header" href="#a別ターミナルで確認コマンド" id="a別ターミナルで確認コマンド"><h2>別ターミナルで確認コマンド</h2></a>
+<a class="header" href="#別ターミナルで確認コマンド" id="別ターミナルで確認コマンド"><h2>別ターミナルで確認コマンド</h2></a>
 <pre><code class="language-bash">$ radtest v2000 v2000pass 127.0.0.1 0 testing123
 Sent Access-Request Id 181 from 0.0.0.0:47802 to 127.0.0.1:1812 length 75
         User-Name = &quot;v2000&quot;
@@ -289,7 +340,7 @@ Received Access-Accept Id 181 from 127.0.0.1:1812 to 0.0.0.0:0 length 38
         Tunnel-Medium-Type:0 = IEEE-802
         Tunnel-Private-Group-Id:0 = &quot;2000&quot;
 </code></pre>
-<a class="header" href="#a停止" id="a停止"><h2>停止</h2></a>
+<a class="header" href="#停止" id="停止"><h2>停止</h2></a>
 <pre><code>$ radiusd -X
 ...
 [Ctrl-c]
@@ -318,7 +369,7 @@ Received Access-Accept Id 181 from 127.0.0.1:1812 to 0.0.0.0:0 length 38
 server ntp.nict.jp
 server ntp.jst.mfeed.ad.jp
 </code></pre>
-<a class="header" href="#a起動-1" id="a起動-1"><h2>起動</h2></a>
+<a class="header" href="#起動-2" id="起動-2"><h2>起動</h2></a>
 <p>起動後、ロガーを追記モードで起動します。</p>
 <pre><code>$ docker-compose up -d
 $ docker-compose logs -f
@@ -372,7 +423,7 @@ subnet 172.16.100.0 netmask 255.255.255.0 {
   option domain-search &quot;example.local&quot;;
 }
 </code></pre>
-<a class="header" href="#a起動-2" id="a起動-2"><h2>起動</h2></a>
+<a class="header" href="#起動-3" id="起動-3"><h2>起動</h2></a>
 <pre><code>$ docker-compose up -d
 </code></pre>
 <a class="header" href="#dns-server-by-docker" id="dns-server-by-docker"><h1>DNS server by Docker</h1></a>
@@ -434,7 +485,7 @@ networks:
 <p>macvlan設定を投入します</p>
 <pre><code>docker network create -d macvlan --subnet=172.16.100.0/24 --gateway=172.16.71.254 -o parent=eth0 maceth0
 </code></pre>
-<a class="header" href="#a起動-3" id="a起動-3"><h2>起動</h2></a>
+<a class="header" href="#起動-4" id="起動-4"><h2>起動</h2></a>
 <pre><code>$ docker-compose up -d
 </code></pre>
 <a class="header" href="#docker-nertwork" id="docker-nertwork"><h1>Docker Nertwork</h1></a>
@@ -514,6 +565,21 @@ docker network rm v0100
 
         </div>
 
+        
+        <!-- Livereload script (if served using the cli tool) -->
+        <script type="text/javascript">
+            var socket = new WebSocket("ws://localhost:10001");
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload(true); // force reload from server (not from cache)
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
         
 
         
