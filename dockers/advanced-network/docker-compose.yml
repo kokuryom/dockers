@@ -1,0 +1,12 @@
+version: '3'
+services:
+  advanced_network:
+    image: busybox
+    command: '/bin/sh'
+    networks:
+      v1000:
+        ipv4_address: 172.16.100.100
+networks:
+  v1000:
+    external:
+      name: 'v1000'
