@@ -1,9 +1,9 @@
 version: '3'
 services:
   dhcpd:
-    container_name: my-dhcpd
     image: alpine-dhcpd
     build: .
+    restart: always
     volumes:
       - ./conf/dhcpd.conf:/etc/dhcp/dhcpd.conf
       - ./conf/dhcpd.leases:/var/lib/dhcp/dhcpd.leases

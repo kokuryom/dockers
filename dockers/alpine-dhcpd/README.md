@@ -1,23 +1,14 @@
 # alpine-dhcpd
 
-## difference between two docker-compose.yml
-by dfferences between docker-compose version, there happens trouble with starting up dhcpd.
+## network_mode: 'host' in docker-compose.yml
+isc-dhcpd needs dhcpd.conf which includes its attached network.  
+But docker's default network_mode 'bridge' causes attaching to different network  
+To avoid this, if you want to use this image on the host network, use network_mode: 'host' in docker-compose.yml  
 
-isc-dhcpd needs dhcpd.conf which includes its attached network.
+FYI, if host eth0 has 192.168.0.1/24, then dhcpd.conf must include 192.168.0.x to 192.168.0.y range definition.  
 
-For example, eth0 has 192.168.0.1/24, then dhcpd.conf must include 192.168.0.x to 192.168.0.y range definition.
-
-### docker-compose.yml.simple
-old docker-compose.yml default network uses all of host networks.
-
-If host has eth0(ex.: 192.168.0.x/24),docker default bridge(ex.: 172.17.0.0/24), started instance provides services on both networks.
-
-This means, you don't warry about dhcpd.conf contents as far as it includes one of host's network range
-
-### docker-compose.yml.better
-newer docker-compose version host network starts on newly created unpredictable network bridge(ex.: 172.19.0.0/24) and host network range is not seen from docker instance. This causes exit with start error "No subnet declaration for eth0 (x.x.x.x)."
-
-to avoid this, you have to define attaching network
+### docker-compose.yml.macvlan_example
+macvlan network can avoid the problems above. This method creates direct attachement to HW NIC virtually.
 
 Create docker network to attach
 ```
@@ -29,7 +20,6 @@ Then, add the config to use
 version: '3'
 services:
   dhcpd:
-    container_name: my-dhcpd
     image: alpine-dhcpd
     build: .
     volumes:
