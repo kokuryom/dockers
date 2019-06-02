@@ -3,9 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>dockerコマンド - dockers</title>
-        
-
+        <title>基本コマンド - dockers</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,10 +34,7 @@
     </head>
     <body class="light">
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">
-            var path_to_root = "";
-            var default_theme = "light";
-        </script>
+        <script type="text/javascript">var path_to_root = "";</script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script type="text/javascript">
@@ -60,8 +55,8 @@
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script type="text/javascript">
             var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
-            if (theme === null || theme === undefined) { theme = default_theme; }
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = 'light'; }
             document.body.className = theme;
             document.querySelector('html').className = theme + ' js';
         </script>
@@ -79,10 +74,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li><a href="getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li><a href="docker_command.html" class="active"><strong aria-hidden="true">1.1.</strong> dockerコマンド</a></li><li><a href="docker_compose_command.html"><strong aria-hidden="true">1.2.</strong> docker-composeコマンド</a></li></ol></li><li><a href="alpine-freeradius.html"><strong aria-hidden="true">2.</strong> radiusd by docker</a></li><li><ol class="section"><li><a href="radius_centos7.html"><strong aria-hidden="true">2.1.</strong> FreeRADIUS3 おさらい</a></li></ol></li><li><a href="alpine-ntpd.html"><strong aria-hidden="true">3.</strong> ntpd by docker</a></li><li><a href="alpine-dhcpd.html"><strong aria-hidden="true">4.</strong> dhcpd by docker</a></li><li><a href="alpine-dnsmasq.html"><strong aria-hidden="true">5.</strong> dnsmasq by docker</a></li><li><a href="advanced-network.html"><strong aria-hidden="true">6.</strong> Advanced Network</a></li></ol>
-            </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <ol class="chapter"><li><a href="title.html"><strong aria-hidden="true">1.</strong> Title</a></li><li><ol class="section"><li><a href="preparation.html"><strong aria-hidden="true">1.1.</strong> 準備</a></li><li><a href="basic_commands.html" class="active"><strong aria-hidden="true">1.2.</strong> 基本コマンド</a></li></ol></li><li><a href="alpine-freeradius.html"><strong aria-hidden="true">2.</strong> radiusd by docker</a></li><li><ol class="section"><li><a href="radius_centos7.html"><strong aria-hidden="true">2.1.</strong> FreeRADIUS3 おさらい</a></li></ol></li><li><a href="alpine-ntpd.html"><strong aria-hidden="true">3.</strong> ntpd by docker</a></li><li><a href="alpine-dhcpd.html"><strong aria-hidden="true">4.</strong> dhcpd by docker</a></li><li><a href="alpine-dnsmasq.html"><strong aria-hidden="true">5.</strong> dnsmasq by docker</a></li><li><a href="advanced-network.html"><strong aria-hidden="true">6.</strong> Advanced Network</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -99,7 +91,7 @@
                                 <i class="fa fa-paint-brush"></i>
                             </button>
                             <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -112,13 +104,12 @@
                             
                         </div>
 
-                        <h1 class="menu-title">dockers</h1>
+                        <h1 class="menu-title">dockers</h1> 
 
                         <div class="right-buttons">
                             <a href="print.html" title="Print this book" aria-label="Print this book">
                                 <i id="print-button" class="fa fa-print"></i>
                             </a>
-                            
                         </div>
                     </div>
                 </div>
@@ -147,20 +138,34 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#docker-コマンド" id="docker-コマンド"><h1>docker コマンド</h1></a>
-<a class="header" href="#起動" id="起動"><h2>起動</h2></a>
+                        <a class="header" href="#a基本コマンド" id="a基本コマンド"><h1>基本コマンド</h1></a>
+<a class="header" href="#docker-コマンド" id="docker-コマンド"><h2>docker コマンド</h2></a>
+<a class="header" href="#a起動" id="a起動"><h3>起動</h3></a>
 <table><thead><tr><th> コマンド </th><th> 説明 </th><th> 参考URL </th></tr></thead><tbody>
-<tr><td> docker run -it IMAGE /bin/bash</td><td>IMAGEで/bin/bashを使用する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/run/">docker run</a> </td></tr>
-<tr><td> docker exec -it CONTAINER /bin/bash </td><td>CONTAINERで/bin/bashを使用する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/exec/">docker exec</a> </td></tr>
+<tr><td> docker run -it IMAGE /bin/bash</td><td>IMAGEで/bin/bashを使用する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/run/">run</a> </td></tr>
+<tr><td> docker exec -it CONTAINER /bin/bash </td><td>CONTAINERで/bin/bashを使用する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/exec/">exec</a> </td></tr>
 </tbody></table>
-<a class="header" href="#起動確認停止削除" id="起動確認停止削除"><h2>起動確認／停止／削除</h2></a>
+<a class="header" href="#a起動確認停止削除" id="a起動確認停止削除"><h3>起動確認／停止／削除</h3></a>
 <table><thead><tr><th> コマンド </th><th> 説明 </th><th> 参考URL </th></tr></thead><tbody>
-<tr><td> docker ps    </td><td>現在動作しているContainerを表示する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/ps/">docker ps</a> </td></tr>
-<tr><td> docker stop  </td><td>現在動作しているContainerを停止する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/stop/">docker stop</a> </td></tr>
-<tr><td> docker ps -a </td><td>停止したContainerを表示する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/ps/">docker ps</a> </td></tr>
-<tr><td> docker rm CONTAINER </td><td>停止したCONTAINERを削除する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/rm/">docker rm</a> </td></tr>
-<tr><td> docker images </td><td>ローカルにあるIMAGEを表示する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/images/">docker images</a> </td></tr>
-<tr><td> docker rmi IMAGE </td><td>使用していないIMAGEを削除する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/rmi/">docker rmi</a> </td></tr>
+<tr><td> docker ps    </td><td>現在動作しているContainerを表示する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/ps/">ps</a> </td></tr>
+<tr><td> docker stop  </td><td>現在動作しているContainerを停止する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/stop/">stop</a> </td></tr>
+<tr><td> docker ps -a </td><td>停止したContainerを表示する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/ps/">ps</a> </td></tr>
+<tr><td> docker rm CONTAINER </td><td>停止したCONTAINERを削除する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/rm/">rm</a> </td></tr>
+<tr><td> docker images </td><td>ローカルにあるIMAGEを表示する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/images/">images</a> </td></tr>
+<tr><td> docker rmi IMAGE </td><td>使用していないIMAGEを削除する</td><td> <a href="https://docs.docker.com/engine/reference/commandline/rmi/">rmi</a> </td></tr>
+</tbody></table>
+<a class="header" href="#docker-compose-コマンド" id="docker-compose-コマンド"><h2>docker-compose コマンド</h2></a>
+<a class="header" href="#a起動停止" id="a起動停止"><h3>起動/停止</h3></a>
+<table><thead><tr><th> コマンド </th><th> 説明 </th><th> 参考URL </th></tr></thead><tbody>
+<tr><td> docker-compose up -d</td><td>docker-compose.ymlのあるフォルダで起動する</td><td> <a href="https://docs.docker.com/compose/reference/up/">up</a> </td></tr>
+<tr><td> docker-compose down</td><td>docker-compose.ymlのあるフォルダで停止する</td><td> <a href="https://docs.docker.com/compose/reference/down/">down</a> </td></tr>
+<tr><td> docker-compose up</td><td>docker-compose.ymlのあるフォルダで起動し、Containerのstdoutを表示する</td><td> <a href="https://docs.docker.com/compose/reference/up/">up</a> </td></tr>
+<tr><td> Ctrl-C </td><td> docker-compose upで起動したContainerを停止する</td><td> </td></tr>
+</tbody></table>
+<a class="header" href="#aログ確認" id="aログ確認"><h3>ログ確認</h3></a>
+<table><thead><tr><th> コマンド </th><th> 説明 </th><th> 参考URL </th></tr></thead><tbody>
+<tr><td> docker-compose logs -f</td><td>docker-compose.ymlのあるフォルダでdetachされたstdoutに接続する</td><td> <a href="https://docs.docker.com/compose/reference/up/">logs</a> </td></tr>
+<tr><td> Ctrl-C </td><td> docker-compose logs -fを停止する</td><td> </td></tr>
 </tbody></table>
 
                     </main>
@@ -168,13 +173,13 @@
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
-                            <a rel="prev" href="getting_started.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="preparation.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
                         
 
                         
-                            <a rel="next" href="docker_compose_command.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="alpine-freeradius.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -186,13 +191,13 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
-                    <a href="getting_started.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a href="preparation.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
                 
 
                 
-                    <a href="docker_compose_command.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="alpine-freeradius.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
@@ -203,7 +208,7 @@
         
         <!-- Livereload script (if served using the cli tool) -->
         <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:10001");
+            var socket = new WebSocket("ws://localhost:3001");
             socket.onmessage = function (event) {
                 if (event.data === "reload") {
                     socket.close();

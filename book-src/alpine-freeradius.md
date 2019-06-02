@@ -3,10 +3,10 @@
 ## dockers/alpine-freeradius
 * Dockerfile
 * docker-compose.yml
-* check.sh
 * conf
   * users
   * clients.conf
+* check.sh
 
 ### Configuration
 
@@ -56,6 +56,7 @@ $ docker-compose up -d
 $ docker-compose logs -f
 ```
 
+#### check.sh
 別ターミナルでcheck.shを使用すると動作チェックができます。
 ```bash
 $ sh check.sh
