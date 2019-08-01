@@ -4,8 +4,6 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>Advanced Network - dockers</title>
-        
-
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,10 +34,7 @@
     </head>
     <body class="light">
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">
-            var path_to_root = "";
-            var default_theme = "light";
-        </script>
+        <script type="text/javascript">var path_to_root = "";</script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script type="text/javascript">
@@ -60,8 +55,8 @@
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script type="text/javascript">
             var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
-            if (theme === null || theme === undefined) { theme = default_theme; }
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = 'light'; }
             document.body.className = theme;
             document.querySelector('html').className = theme + ' js';
         </script>
@@ -79,10 +74,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li><a href="getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li><a href="docker_command.html"><strong aria-hidden="true">1.1.</strong> dockerコマンド</a></li><li><a href="docker_compose_command.html"><strong aria-hidden="true">1.2.</strong> docker-composeコマンド</a></li></ol></li><li><a href="alpine-freeradius.html"><strong aria-hidden="true">2.</strong> radiusd by docker</a></li><li><ol class="section"><li><a href="radius_centos7.html"><strong aria-hidden="true">2.1.</strong> FreeRADIUS3 おさらい</a></li></ol></li><li><a href="alpine-ntpd.html"><strong aria-hidden="true">3.</strong> ntpd by docker</a></li><li><a href="alpine-dhcpd.html"><strong aria-hidden="true">4.</strong> dhcpd by docker</a></li><li><a href="alpine-dnsmasq.html"><strong aria-hidden="true">5.</strong> dnsmasq by docker</a></li><li><a href="advanced-network.html" class="active"><strong aria-hidden="true">6.</strong> Advanced Network</a></li></ol>
-            </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <ol class="chapter"><li><a href="title.html"><strong aria-hidden="true">1.</strong> Title</a></li><li><ol class="section"><li><a href="preparation.html"><strong aria-hidden="true">1.1.</strong> 準備</a></li><li><a href="basic_commands.html"><strong aria-hidden="true">1.2.</strong> 基本コマンド</a></li></ol></li><li><a href="alpine-freeradius.html"><strong aria-hidden="true">2.</strong> radiusd by docker</a></li><li><ol class="section"><li><a href="radius_centos7.html"><strong aria-hidden="true">2.1.</strong> FreeRADIUS3 おさらい</a></li></ol></li><li><a href="alpine-ntpd.html"><strong aria-hidden="true">3.</strong> ntpd by docker</a></li><li><a href="alpine-dhcpd.html"><strong aria-hidden="true">4.</strong> dhcpd by docker</a></li><li><a href="alpine-dnsmasq.html"><strong aria-hidden="true">5.</strong> dnsmasq by docker</a></li><li><a href="advanced-network.html" class="active"><strong aria-hidden="true">6.</strong> Advanced Network</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -99,7 +91,7 @@
                                 <i class="fa fa-paint-brush"></i>
                             </button>
                             <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -112,13 +104,12 @@
                             
                         </div>
 
-                        <h1 class="menu-title">dockers</h1>
+                        <h1 class="menu-title">dockers</h1> 
 
                         <div class="right-buttons">
                             <a href="print.html" title="Print this book" aria-label="Print this book">
                                 <i id="print-button" class="fa fa-print"></i>
                             </a>
-                            
                         </div>
                     </div>
                 </div>
@@ -147,23 +138,18 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#docker-nertwork" id="docker-nertwork"><h1>Docker Nertwork</h1></a>
-<p>If docker network is non cluster settings, there are two methods to connect real network.</p>
-<ol>
-<li>bridge: attach to internal bridge by using host's ip and ip forwarding.</li>
-<li>macvlan: create macvlan network by docker network command, then attach to it with new ip address.</li>
-</ol>
-<p>If you use docker-compose.yml without the description of networks, host mode is used. (Though it may depend on docker-compose version).</p>
-<p>macvlan mode is very useful because it is isolated from docker host's network.</p>
+                        <a class="header" href="#macvlan" id="macvlan"><h1>macvlan</h1></a>
+<p>dockerのネットワーク接続のうち、macvlanを使用できるモードがあります</p>
+<p>macvlanを使用すると以下のメリットがあります</p>
 <ul>
-<li>This is great if attached vlan doesn't have internet access to build docker. Download from host's net, then deploy to favorite network.</li>
-<li>You can create new network rule with created network namespaces, ex. routes, iptables, forwarding and so on,</li>
+<li>ホストのFirewallポリシーとは独立して動作します</li>
+<li>ホスト上にNetwork Namespaceとして作成されるのでルーティングやiptables等を独立して設定できます</li>
 </ul>
-<a class="header" href="#basic-macvlan-usage" id="basic-macvlan-usage"><h2>basic macvlan usage</h2></a>
-<p>create macvlan network ex. v0100 is the name.</p>
+<a class="header" href="#a基本操作" id="a基本操作"><h2>基本操作</h2></a>
+<p>tag id 100でネットワークを作成します</p>
 <pre><code class="language-bash">docker network create -d macvlan --subnet=172.16.100.0/24 --gateway=172.16.100.254 -o parent=eth1.100 v0100
 </code></pre>
-<p>add networks to docker-compose.yml</p>
+<p>作成したネットワークをdocker-compose.yml内で指定して、使用するIPアドレスを記述します</p>
 <pre><code class="language-yaml">services:
   something:
     container_name: my-container
@@ -176,11 +162,10 @@ networks:
     external:
       name: 'v0100'
 </code></pre>
-<p>note</p>
-<ul>
-<li>You can not assign gateway address to container. If you specify --gateway at creating network, gateway has x.x.x.1 address and you can not assign .1 to container.</li>
-</ul>
-<p>you can change network namespace contents by scripts.</p>
+<a class="header" href="#macvlanで作成されるnetwork-namespaceの注意事項" id="macvlanで作成されるnetwork-namespaceの注意事項"><h4>macvlanで作成されるNetwork Namespaceの注意事項</h4></a>
+<p>gateway設定を入力しない場合、x.x.x.1がdefault gatewayとして使用されますが、他のアドレスを割り当ててもx.x.x.1は予約アドレスとして使用され、Network Namespace内に見えてきてしまうことがあります。</p>
+<p>my-containerがdocker-compose.ymlでcontainer_nameに指定されている場合の<br />
+x.x.x.1を消して正しいルーティングを行う例</p>
 <pre><code class="language-bash">#! /bin/sh
 CONT_ID=`docker ps -q -f name=my-container$`
 CONT_NS=NS_MINE
@@ -235,7 +220,7 @@ docker network rm v0100
         
         <!-- Livereload script (if served using the cli tool) -->
         <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:10001");
+            var socket = new WebSocket("ws://localhost:3001");
             socket.onmessage = function (event) {
                 if (event.data === "reload") {
                     socket.close();

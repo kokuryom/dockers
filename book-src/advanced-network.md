@@ -1,23 +1,20 @@
-# Docker Nertwork
+# macvlan
 
-If docker network is non cluster settings, there are two methods to connect real network.
-1. bridge: attach to internal bridge by using host's ip and ip forwarding.
-2. macvlan: create macvlan network by docker network command, then attach to it with new ip address.
+dockerのネットワーク接続のうち、macvlanを使用できるモードがあります
 
-If you use docker-compose.yml without the description of networks, host mode is used. (Though it may depend on docker-compose version).
+macvlanを使用すると以下のメリットがあります
 
-macvlan mode is very useful because it is isolated from docker host's network. 
-* This is great if attached vlan doesn't have internet access to build docker. Download from host's net, then deploy to favorite network.
-* You can create new network rule with created network namespaces, ex. routes, iptables, forwarding and so on,
+* ホストのFirewallポリシーとは独立して動作します
+* ホスト上にNetwork Namespaceとして作成されるのでルーティングやiptables等を独立して設定できます
 
-## basic macvlan usage
+## 基本操作
 
-create macvlan network ex. v0100 is the name.
+tag id 100でネットワークを作成します
 ```bash
 docker network create -d macvlan --subnet=172.16.100.0/24 --gateway=172.16.100.254 -o parent=eth1.100 v0100
 ```
 
-add networks to docker-compose.yml
+作成したネットワークをdocker-compose.yml内で指定して、使用するIPアドレスを記述します
 ```yaml
 services:
   something:
@@ -31,11 +28,12 @@ networks:
     external:
       name: 'v0100'
 ```
+#### macvlanで作成されるNetwork Namespaceの注意事項
+ gateway設定を入力しない場合、x.x.x.1がdefault gatewayとして使用されますが、他のアドレスを割り当ててもx.x.x.1は予約アドレスとして使用され、Network Namespace内に見えてきてしまうことがあります。
 
-note
-* You can not assign gateway address to container. If you specify --gateway at creating network, gateway has x.x.x.1 address and you can not assign .1 to container.
+my-containerがdocker-compose.ymlでcontainer_nameに指定されている場合の  
+x.x.x.1を消して正しいルーティングを行う例  
 
-you can change network namespace contents by scripts.
 ```bash
 #! /bin/sh
 CONT_ID=`docker ps -q -f name=my-container$`

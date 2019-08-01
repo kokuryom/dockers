@@ -3,9 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Getting Started - dockers</title>
-        
-
+        <title>準備 - dockers</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,10 +34,7 @@
     </head>
     <body class="light">
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">
-            var path_to_root = "";
-            var default_theme = "light";
-        </script>
+        <script type="text/javascript">var path_to_root = "";</script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script type="text/javascript">
@@ -60,8 +55,8 @@
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script type="text/javascript">
             var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
-            if (theme === null || theme === undefined) { theme = default_theme; }
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = 'light'; }
             document.body.className = theme;
             document.querySelector('html').className = theme + ' js';
         </script>
@@ -79,10 +74,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li><a href="getting_started.html" class="active"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li><a href="docker_command.html"><strong aria-hidden="true">1.1.</strong> dockerコマンド</a></li><li><a href="docker_compose_command.html"><strong aria-hidden="true">1.2.</strong> docker-composeコマンド</a></li></ol></li><li><a href="alpine-freeradius.html"><strong aria-hidden="true">2.</strong> radiusd by docker</a></li><li><ol class="section"><li><a href="radius_centos7.html"><strong aria-hidden="true">2.1.</strong> FreeRADIUS3 おさらい</a></li></ol></li><li><a href="alpine-ntpd.html"><strong aria-hidden="true">3.</strong> ntpd by docker</a></li><li><a href="alpine-dhcpd.html"><strong aria-hidden="true">4.</strong> dhcpd by docker</a></li><li><a href="alpine-dnsmasq.html"><strong aria-hidden="true">5.</strong> dnsmasq by docker</a></li><li><a href="advanced-network.html"><strong aria-hidden="true">6.</strong> Advanced Network</a></li></ol>
-            </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <ol class="chapter"><li><a href="title.html"><strong aria-hidden="true">1.</strong> Title</a></li><li><ol class="section"><li><a href="preparation.html" class="active"><strong aria-hidden="true">1.1.</strong> 準備</a></li><li><a href="basic_commands.html"><strong aria-hidden="true">1.2.</strong> 基本コマンド</a></li></ol></li><li><a href="alpine-freeradius.html"><strong aria-hidden="true">2.</strong> radiusd by docker</a></li><li><ol class="section"><li><a href="radius_centos7.html"><strong aria-hidden="true">2.1.</strong> FreeRADIUS3 おさらい</a></li></ol></li><li><a href="alpine-ntpd.html"><strong aria-hidden="true">3.</strong> ntpd by docker</a></li><li><a href="alpine-dhcpd.html"><strong aria-hidden="true">4.</strong> dhcpd by docker</a></li><li><a href="alpine-dnsmasq.html"><strong aria-hidden="true">5.</strong> dnsmasq by docker</a></li><li><a href="advanced-network.html"><strong aria-hidden="true">6.</strong> Advanced Network</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -99,7 +91,7 @@
                                 <i class="fa fa-paint-brush"></i>
                             </button>
                             <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -112,13 +104,12 @@
                             
                         </div>
 
-                        <h1 class="menu-title">dockers</h1>
+                        <h1 class="menu-title">dockers</h1> 
 
                         <div class="right-buttons">
                             <a href="print.html" title="Print this book" aria-label="Print this book">
                                 <i id="print-button" class="fa fa-print"></i>
                             </a>
-                            
                         </div>
                     </div>
                 </div>
@@ -147,44 +138,30 @@
 
                 <div id="content" class="content">
                     <main>
-                        <a class="header" href="#getting-started" id="getting-started"><h2>Getting started</h2></a>
-<ol>
-<li>dockerとdocker-composeをインストールしてください。</li>
-</ol>
-<ul>
-<li><a href="https://docs.docker.com/install/linux/docker-ce/centos/">Install docker</a></li>
-<li><a href="https://docs.docker.com/compose/install/">Install docker-compose</a></li>
-</ul>
-<ol start="2">
-<li><a href="https://github.com/kokuryom/dockers">この</a>リポジトリを使用します。git cloneまたはダウンロードしてください。</li>
-</ol>
+                        <a class="header" href="#a準備" id="a準備"><h1>準備</h1></a>
+<a class="header" href="#dockerをインストールしてください" id="dockerをインストールしてください"><h2>dockerをインストールしてください。</h2></a>
+<p><a href="https://docs.docker.com/install/linux/docker-ce/centos/">Install docker</a></p>
+<a class="header" href="#docker-composeをインストールしてください" id="docker-composeをインストールしてください"><h2>docker-composeをインストールしてください。</h2></a>
+<p><a href="https://docs.docker.com/compose/install/">Install docker-compose</a></p>
+<a class="header" href="#aリポジトリ" id="aリポジトリ"><h2>リポジトリ</h2></a>
+<p><a href="https://github.com/kokuryom/dockers">https://github.com/kokuryom/dockers</a>を使用します。</p>
+<p>git cloneまたはダウンロードしてください。</p>
 <pre><code>$ git clone https://github.com/kokuryom/dockers
 $ cd dockers/dockers
 </code></pre>
-<ol start="3">
-<li>各サービスの使用方法は本ドキュメントの各章をご覧ください</li>
-</ol>
-<ul>
-<li>alpine-freeradius<br />
-<a href="/alpine-freeradius.html">radiusd by docker</a></li>
-<li>alpine-ntpd<br />
-<a href="/alpine-ntpd.html">ntpd by docker</a></li>
-<li>alpine-dhcpd<br />
-<a href="/alpine-dhcpd.html">dhcpd by docker</a></li>
-<li>alpine-dnsmasq<br />
-<a href="/alpine-dnsmasq.html">dnsmasq by docker</a></li>
-</ul>
-<a class="header" href="#about-this-repository" id="about-this-repository"><h2>About this repository</h2></a>
-<p>ネットワーク検証環境で便利に使えるDockerfileを使用方法と共に集めました</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
                         
+                            <a rel="prev" href="title.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
 
                         
-                            <a rel="next" href="docker_command.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next" href="basic_commands.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
                         
@@ -196,9 +173,13 @@ $ cd dockers/dockers
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
                 
+                    <a href="title.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
 
                 
-                    <a href="docker_command.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a href="basic_commands.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
                 
@@ -209,7 +190,7 @@ $ cd dockers/dockers
         
         <!-- Livereload script (if served using the cli tool) -->
         <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:10001");
+            var socket = new WebSocket("ws://localhost:3001");
             socket.onmessage = function (event) {
                 if (event.data === "reload") {
                     socket.close();

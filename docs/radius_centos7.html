@@ -4,8 +4,6 @@
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
         <title>FreeRADIUS3 おさらい - dockers</title>
-        
-
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,10 +34,7 @@
     </head>
     <body class="light">
         <!-- Provide site root to javascript -->
-        <script type="text/javascript">
-            var path_to_root = "";
-            var default_theme = "light";
-        </script>
+        <script type="text/javascript">var path_to_root = "";</script>
 
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script type="text/javascript">
@@ -60,8 +55,8 @@
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script type="text/javascript">
             var theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
-            if (theme === null || theme === undefined) { theme = default_theme; }
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { } 
+            if (theme === null || theme === undefined) { theme = 'light'; }
             document.body.className = theme;
             document.querySelector('html').className = theme + ' js';
         </script>
@@ -79,10 +74,7 @@
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li><a href="getting_started.html"><strong aria-hidden="true">1.</strong> Getting Started</a></li><li><ol class="section"><li><a href="docker_command.html"><strong aria-hidden="true">1.1.</strong> dockerコマンド</a></li><li><a href="docker_compose_command.html"><strong aria-hidden="true">1.2.</strong> docker-composeコマンド</a></li></ol></li><li><a href="alpine-freeradius.html"><strong aria-hidden="true">2.</strong> radiusd by docker</a></li><li><ol class="section"><li><a href="radius_centos7.html" class="active"><strong aria-hidden="true">2.1.</strong> FreeRADIUS3 おさらい</a></li></ol></li><li><a href="alpine-ntpd.html"><strong aria-hidden="true">3.</strong> ntpd by docker</a></li><li><a href="alpine-dhcpd.html"><strong aria-hidden="true">4.</strong> dhcpd by docker</a></li><li><a href="alpine-dnsmasq.html"><strong aria-hidden="true">5.</strong> dnsmasq by docker</a></li><li><a href="advanced-network.html"><strong aria-hidden="true">6.</strong> Advanced Network</a></li></ol>
-            </div>
-            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+            <ol class="chapter"><li><a href="title.html"><strong aria-hidden="true">1.</strong> Title</a></li><li><ol class="section"><li><a href="preparation.html"><strong aria-hidden="true">1.1.</strong> 準備</a></li><li><a href="basic_commands.html"><strong aria-hidden="true">1.2.</strong> 基本コマンド</a></li></ol></li><li><a href="alpine-freeradius.html"><strong aria-hidden="true">2.</strong> radiusd by docker</a></li><li><ol class="section"><li><a href="radius_centos7.html" class="active"><strong aria-hidden="true">2.1.</strong> FreeRADIUS3 おさらい</a></li></ol></li><li><a href="alpine-ntpd.html"><strong aria-hidden="true">3.</strong> ntpd by docker</a></li><li><a href="alpine-dhcpd.html"><strong aria-hidden="true">4.</strong> dhcpd by docker</a></li><li><a href="alpine-dnsmasq.html"><strong aria-hidden="true">5.</strong> dnsmasq by docker</a></li><li><a href="advanced-network.html"><strong aria-hidden="true">6.</strong> Advanced Network</a></li></ol>
         </nav>
 
         <div id="page-wrapper" class="page-wrapper">
@@ -99,7 +91,7 @@
                                 <i class="fa fa-paint-brush"></i>
                             </button>
                             <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                                <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                                <li role="none"><button role="menuitem" class="theme" id="light">Light <span class="default">(default)</span></button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                                 <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -112,13 +104,12 @@
                             
                         </div>
 
-                        <h1 class="menu-title">dockers</h1>
+                        <h1 class="menu-title">dockers</h1> 
 
                         <div class="right-buttons">
                             <a href="print.html" title="Print this book" aria-label="Print this book">
                                 <i id="print-button" class="fa fa-print"></i>
                             </a>
-                            
                         </div>
                     </div>
                 </div>
@@ -184,7 +175,7 @@ client client1 {
   secret = client1
 }
 </code></pre>
-<a class="header" href="#ユーザーを登録" id="ユーザーを登録"><h2>ユーザーを登録</h2></a>
+<a class="header" href="#aユーザーを登録" id="aユーザーを登録"><h2>ユーザーを登録</h2></a>
 <p>/etc/raddb/users</p>
 <pre><code class="language-bash"># username: v2000, password: v2000pass
 # will be assigned vlan-id 2000 on Access-Accept
@@ -193,12 +184,12 @@ v2000   Cleartext-Password := &quot;v2000pass&quot;
         Tunnel-Medium-Type = IEEE-802,
         Tunnel-Private-Group-Id = 2000
 </code></pre>
-<a class="header" href="#ログが出る状態で起動" id="ログが出る状態で起動"><h2>ログが出る状態で起動</h2></a>
+<a class="header" href="#aログが出る状態で起動" id="aログが出る状態で起動"><h2>ログが出る状態で起動</h2></a>
 <pre><code class="language-bash">$ systemctl disable radiusd
 $ systemctl stop radiusd
 $ radiusd -X
 </code></pre>
-<a class="header" href="#別ターミナルで確認コマンド" id="別ターミナルで確認コマンド"><h2>別ターミナルで確認コマンド</h2></a>
+<a class="header" href="#a別ターミナルで確認コマンド" id="a別ターミナルで確認コマンド"><h2>別ターミナルで確認コマンド</h2></a>
 <pre><code class="language-bash">$ radtest v2000 v2000pass 127.0.0.1 0 testing123
 Sent Access-Request Id 181 from 0.0.0.0:47802 to 127.0.0.1:1812 length 75
         User-Name = &quot;v2000&quot;
@@ -212,7 +203,7 @@ Received Access-Accept Id 181 from 127.0.0.1:1812 to 0.0.0.0:0 length 38
         Tunnel-Medium-Type:0 = IEEE-802
         Tunnel-Private-Group-Id:0 = &quot;2000&quot;
 </code></pre>
-<a class="header" href="#停止" id="停止"><h2>停止</h2></a>
+<a class="header" href="#a停止" id="a停止"><h2>停止</h2></a>
 <pre><code>$ radiusd -X
 ...
 [Ctrl-c]
@@ -258,7 +249,7 @@ Received Access-Accept Id 181 from 127.0.0.1:1812 to 0.0.0.0:0 length 38
         
         <!-- Livereload script (if served using the cli tool) -->
         <script type="text/javascript">
-            var socket = new WebSocket("ws://localhost:10001");
+            var socket = new WebSocket("ws://localhost:3001");
             socket.onmessage = function (event) {
                 if (event.data === "reload") {
                     socket.close();
